@@ -15,7 +15,7 @@ if (isset($_COOKIE['session_id'])) {
     // Look up the session ID in the session store
     if (session_id() != $session_id) {
         // The session ID in the cookie is not valid, redirect the user to the login page
-        header('Location: login_page.php');
+        header('Location: portallogin.html');
         exit;
     } else {
         // The session ID in the cookie is valid, check if it has expired
@@ -24,7 +24,7 @@ if (isset($_COOKIE['session_id'])) {
             session_unset();
             session_destroy();
             setcookie('session_id', '', time() - 3600, '/');
-            header('Location: login_page.php');
+            header('Location: portallogin.html');
             exit;
         } else {
             // The session is still active, update the last activity time
@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         setcookie('session_id', $session_id, 0, '/');
 
         // Redirect the user to the secured page
-        header('Location: secured_page.php');
+        header('Location: secured_page.html');
         exit;
     } else {
         // The user is not authenticated, display an error message
